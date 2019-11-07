@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         edMonth = findViewById(R.id.month);
-        edNext = findViewById(R.id.month);
+        edNext = findViewById(R.id.next);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 }
-            if(TextUtils.isEmpty(edMonth.getText().toString()) && !TextUtils.isEmpty(edNext.getText().toString())){
+            else if(TextUtils.isEmpty(edMonth.getText().toString()) && !TextUtils.isEmpty(edNext.getText().toString())){
                 float number = Float.parseFloat(edNext.getText().toString());
                 if(number>=1 && number<=20){
                     double money=number*7.35;
@@ -121,12 +121,73 @@ public class MainActivity extends AppCompatActivity {
                             .show();
                 }
                 }
-            if(TextUtils.isEmpty(edMonth.getText().toString()) && TextUtils.isEmpty(edNext.getText().toString())){
+            else if(TextUtils.isEmpty(edMonth.getText().toString()) && TextUtils.isEmpty(edNext.getText().toString())){
             new AlertDialog.Builder(MainActivity.this)
                     .setTitle("錯誤")
                     .setMessage("請輸入數值")
                     .setPositiveButton("OK",listner)
                     .show();
+            }else{
+                float num = Float.parseFloat(edMonth.getText().toString());
+                if(num>=1 && num<=10){
+                    double money= num*7.35;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(num>=11 && num<=30){
+                    double money= num*9.45-21;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(num>=31 && num<=50){
+                    double money= num*11.55-84;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if (num>50){
+                    double money= num*12.075-110.25;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }
+                float number = Float.parseFloat(edNext.getText().toString());
+                if(number>=1 && number<=20){
+                    double money=number*7.35;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(number>=21 && number<=60){
+                    double money= number*9.45-42;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(number>=61 && number<=100){
+                    double money= number*11.55-168;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(number>100){
+                    double money= number*12.075-220.5;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }
             }
 
         }
