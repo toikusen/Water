@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,102 +35,101 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reset();
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
 
     public void reset(){
-        edMonth.setText("");
-        edNext.setText("");
+        String message = "";
+        edMonth.setText(message);
+        edNext.setText(message);
     }
 
-    public void month(){
-        float degree1 = Float.parseFloat(edMonth.getText().toString());
-        DialogInterface.OnClickListener listner1 = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                reset();
-            }
-        };
 
+    public void calculate(View view){
 
-        if(degree1<=10){
-            double money= degree1*7.35;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner1)
-                    .show();
-        }else if(degree1>10 && degree1<=30){
-            double money= degree1*9.45-21;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner1)
-                    .show();
-        }else if(degree1>30 && degree1<=50){
-            double money= degree1*11.55-84;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner1)
-                    .show();
-        }else if (degree1>50){
-            double money= degree1*12.075-110.25;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("每月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner1)
-                    .show();
-        }
-    }
-
-    public void next(){
-        float degree = Float.parseFloat(edNext.getText().toString());
         DialogInterface.OnClickListener listner = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 reset();
             }
         };
-        if(degree<=20){
-            double money= degree*7.35;
+            if(!TextUtils.isEmpty(edMonth.getText().toString()) && TextUtils.isEmpty(edNext.getText().toString())){
+                float num = Float.parseFloat(edMonth.getText().toString());
+                if(num>=1 && num<=10){
+                    double money= num*7.35;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(num>=11 && num<=30){
+                    double money= num*9.45-21;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(num>=31 && num<=50){
+                    double money= num*11.55-84;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if (num>50){
+                    double money= num*12.075-110.25;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("每月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }
+
+                }
+            if(TextUtils.isEmpty(edMonth.getText().toString()) && !TextUtils.isEmpty(edNext.getText().toString())){
+                float number = Float.parseFloat(edNext.getText().toString());
+                if(number>=1 && number<=20){
+                    double money=number*7.35;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(number>=21 && number<=60){
+                    double money= number*9.45-42;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(number>=61 && number<=100){
+                    double money= number*11.55-168;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }else if(number>100){
+                    double money= number*12.075-220.5;
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle("隔月抄表費用")
+                            .setMessage("費用"+ money)
+                            .setPositiveButton("OK",listner)
+                            .show();
+                }
+                }
+            if(TextUtils.isEmpty(edMonth.getText().toString()) && TextUtils.isEmpty(edNext.getText().toString())){
             new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("隔月抄表費用")
-                    .setMessage("費用"+ money)
+                    .setTitle("錯誤")
+                    .setMessage("請輸入數值")
                     .setPositiveButton("OK",listner)
                     .show();
-        }else if(degree>20 && degree<=60){
-            double money= degree*9.45-42;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("隔月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner)
-                    .show();
-        }else if(degree>60 && degree<=100){
-            double money= degree*11.55-168;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("隔月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner)
-                    .show();
-        }else {
-            double money= degree*12.075-220.5;
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("隔月抄表費用")
-                    .setMessage("費用"+ money)
-                    .setPositiveButton("OK",listner)
-                    .show();
+            }
+
         }
-    }
-
-
-    public void calculate(View view){
-       next();
-       month();
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
