@@ -1,6 +1,7 @@
 package com.fju.water;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +41,18 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculate();
+            }
+        });
+
     }
+
+
 
     public void reset(){
         String message = "";
@@ -48,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void calculate(View view){
+    public void calculate(){
 
         DialogInterface.OnClickListener listner = new DialogInterface.OnClickListener() {
             @Override
@@ -60,33 +73,36 @@ public class MainActivity extends AppCompatActivity {
                 float num = Float.parseFloat(edMonth.getText().toString());
                 if(num>=1 && num<=10){
                     double money= num*7.35;
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("每月抄表費用")
-                            .setMessage("費用"+ money)
-                            .setPositiveButton("OK",listner)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setTitle("每月抄表費用")
+//                            .setMessage("費用"+ money)
+//                            .setPositiveButton("OK",listner)
+//                            .show();
                 }else if(num>=11 && num<=30){
                     double money= num*9.45-21;
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("每月抄表費用")
-                            .setMessage("費用"+ money)
-                            .setPositiveButton("OK",listner)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setTitle("每月抄表費用")
+//                            .setMessage("費用"+ money)
+//                            .setPositiveButton("OK",listner)
+//                            .show();
                 }else if(num>=31 && num<=50){
                     double money= num*11.55-84;
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("每月抄表費用")
-                            .setMessage("費用"+ money)
-                            .setPositiveButton("OK",listner)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setTitle("每月抄表費用")
+//                            .setMessage("費用"+ money)
+//                            .setPositiveButton("OK",listner)
+//                            .show();
                 }else if (num>50){
                     double money= num*12.075-110.25;
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setTitle("每月抄表費用")
-                            .setMessage("費用"+ money)
-                            .setPositiveButton("OK",listner)
-                            .show();
+//                    new AlertDialog.Builder(MainActivity.this)
+//                            .setTitle("每月抄表費用")
+//                            .setMessage("費用"+ money)
+//                            .setPositiveButton("OK",listner)
+//                            .show();
                 }
+
+                Intent intent = new Intent(this,ResultActivity.class);
+                startActivity(intent);
 
                 }
             else if(TextUtils.isEmpty(edMonth.getText().toString()) && !TextUtils.isEmpty(edNext.getText().toString())){
