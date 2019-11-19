@@ -71,37 +71,39 @@ public class MainActivity extends AppCompatActivity {
         };
             if(!TextUtils.isEmpty(edMonth.getText().toString()) && TextUtils.isEmpty(edNext.getText().toString())){
                 float num = Float.parseFloat(edMonth.getText().toString());
+                double money = 0;
                 if(num>=1 && num<=10){
-                    double money= num*7.35;
-//                    new AlertDialog.Builder(MainActivity.this)
-//                            .setTitle("每月抄表費用")
+                   money= num*7.35;
+//                new AlertDialog.Builder(MainActivity.this)
+//                        .setTitle("每月抄表費用")
 //                            .setMessage("費用"+ money)
 //                            .setPositiveButton("OK",listner)
-//                            .show();
-                }else if(num>=11 && num<=30){
-                    double money= num*9.45-21;
-//                    new AlertDialog.Builder(MainActivity.this)
-//                            .setTitle("每月抄表費用")
-//                            .setMessage("費用"+ money)
-//                            .setPositiveButton("OK",listner)
-//                            .show();
-                }else if(num>=31 && num<=50){
-                    double money= num*11.55-84;
-//                    new AlertDialog.Builder(MainActivity.this)
-//                            .setTitle("每月抄表費用")
-//                            .setMessage("費用"+ money)
-//                            .setPositiveButton("OK",listner)
-//                            .show();
-                }else if (num>50){
-                    double money= num*12.075-110.25;
-//                    new AlertDialog.Builder(MainActivity.this)
-//                            .setTitle("每月抄表費用")
-//                            .setMessage("費用"+ money)
-//                            .setPositiveButton("OK",listner)
-//                            .show();
+//                           .show();
+            }else if(num>=11 && num<=30){
+                  money= num*9.45-21;
+//                  new AlertDialog.Builder(MainActivity.this)
+//                          .setTitle("每月抄表費用")
+//                          .setMessage("費用"+ money)
+//                          .setPositiveButton("OK",listner)
+//                           .show();
+//                }else if(num>=31 && num<=50){
+//                    double money= num*11.55-84;
+////                    new AlertDialog.Builder(MainActivity.this)
+////                            .setTitle("每月抄表費用")
+////                            .setMessage("費用"+ money)
+////                            .setPositiveButton("OK",listner)
+////                            .show();
+//                }else if (num>50){
+//                    double money= num*12.075-110.25;
+////                    new AlertDialog.Builder(MainActivity.this)
+////                            .setTitle("每月抄表費用")
+////                            .setMessage("費用"+ money)
+////                            .setPositiveButton("OK",listner)
+////                            .show();
                 }
 
-                Intent intent = new Intent(this,ResultActivity.class);
+                Intent intent = new Intent(MainActivity.this,ResultActivity.class);
+                intent.putExtra("MONEY",money);
                 startActivity(intent);
 
                 }
