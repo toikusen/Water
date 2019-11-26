@@ -11,14 +11,17 @@ import java.text.DecimalFormat;
 
 public class ResultActivity extends AppCompatActivity {
 
+    private static final String TAG = ResultActivity.class.getSimpleName();
+    private static final double DEFAULT_MONEY = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
         Intent intent = getIntent();
-        double money = intent.getDoubleExtra("MONEY",0);
-        Log.d("RseultActivity",money+"");
+        double money = intent.getDoubleExtra(getString(R.string.extra_money),DEFAULT_MONEY);
+        Log.d(TAG,money+"");
         TextView moneyText = findViewById(R.id.money);
 
         int n = (int)(money + 0.5f);
