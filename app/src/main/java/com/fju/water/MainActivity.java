@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(edMonth.getText().toString())) {
             float num = Float.parseFloat(edMonth.getText().toString());
             double money = 0;
-            if (isNext = false) {
+            if (isNext == false) {
                 if (num >= 1 && num <= 10) {
                     money = num * 7.35;
 //                new AlertDialog.Builder(MainActivity.this)
